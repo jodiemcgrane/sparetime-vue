@@ -1,60 +1,66 @@
 <!--
 @Date:   2021-02-11T14:34:16+00:00
-@Last modified time: 2021-02-22T10:56:42+00:00
+@Last modified time: 2021-02-22T11:50:31+00:00
 -->
 <template>
-<div>
-  <b-navbar type="dark" variant="dark">
-    <b-navbar-nav>
-      <b-nav-item>
-        <Burger v-b-toggle.sidebar />
-      </b-nav-item>
-      <b-nav-item to="/">Home</b-nav-item>
-      <b-nav-item to="/events">Events</b-nav-item>
-    </b-navbar-nav>
+<nav>
 
-    <b-navbar-nav class="ml-auto">
-      <b-nav-item-dropdown text="User" right>
-        <b-dropdown-item href="#">Profile</b-dropdown-item>
-        <b-dropdown-item href="#">Sign Out</b-dropdown-item>
-      </b-nav-item-dropdown>
-    </b-navbar-nav>
-  </b-navbar>
+  <v-app-bar app dense color="blue">
+    <v-app-bar-nav-icon class="white--text" @click="sideBar = !sideBar"></v-app-bar-nav-icon>
+    <v-toolbar-title class="white--text">SpareTime</v-toolbar-title>
+    <v-spacer />
+    <v-toolbar-items>
+      <v-btn depressed class="blue text-uppercase white--text" to="/Projects">Login</v-btn>
+      <v-icon class="white--text">mdi-login-variant</v-icon>
+    </v-toolbar-items>
+  </v-app-bar>
 
-  <b-sidebar id="sidebar" title="Menu" bg-variant="light" text-variant="dark" shadow>
-    <nav class="mb-3">
-      <b-nav vertical>
-        <b-nav-item to="/events">My Events</b-nav-item>
-        <b-nav-item to="/productivity">Productivity</b-nav-item>
-      </b-nav>
-    </nav>
-  </b-sidebar>
-</div>
+  <v-navigation-drawer app temporary v-model="sideBar">
+    <v-list>
+      <v-list-item v-for="link in links" :key="link.text" router :to="link.route">
+        <v-list-item-icon>
+          <v-icon class="black--text">{{link.icon}}</v-icon>
+        </v-list-item-icon>
+        <v-list-item-content>
+          <v-list-item-title>{{ link.title}}</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+    </v-list>
+  </v-navigation-drawer>
+
+</nav>
 </template>
 
 <script>
-import Burger from './Burger'
-
 export default {
   name: 'NavBar',
+  data() {
+    return {
+      sideBar: false,
+      links: [{
+          icon: 'mdi-home-variant',
+          title: 'Home',
+          route: '/'
+        },
+        {
+          icon: 'mdi-calendar-check',
+          title: 'Events',
+          route: '/events'
+        },
+        {
+          icon: 'mdi-finance',
+          title: 'Productivity',
+          route: '/productivity'
+        }
+      ]
+    }
+  },
   components: {
-    Burger,
+
   },
 }
 </script>
 
 <style>
-/* #nav {
-  padding: 30px;
-  text-align: center;
-}
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #fff;
-} */
 </style>

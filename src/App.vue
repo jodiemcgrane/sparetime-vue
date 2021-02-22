@@ -1,15 +1,14 @@
 <!--
 @Date:   2021-02-18T16:01:45+00:00
-@Last modified time: 2021-02-22T10:51:43+00:00
+@Last modified time: 2021-02-22T11:41:46+00:00
 -->
-
-
-
 <template>
-<div>
+<v-app>
   <NavBar />
-  <router-view />
-</div>
+  <v-main>
+    <router-view />
+  </v-main>
+</v-app>
 </template>
 
 <script>
