@@ -1,26 +1,24 @@
 <!--
 @Date:   2021-02-18T16:01:45+00:00
-@Last modified time: 2021-02-18T16:23:55+00:00
+@Last modified time: 2021-02-22T10:51:43+00:00
 -->
 
 
 
 <template>
 <div>
-  <b-container>
-    <b-row>
-      <router-view />
-    </b-row>
-  </b-container>
+  <NavBar />
+  <router-view />
 </div>
 </template>
 
 <script>
+import NavBar from './components/NavBar.vue'
 
 export default {
   name: 'App',
   components: {
-
+    NavBar,
   }
 }
 </script>
