@@ -3,26 +3,56 @@
 @Last modified time: 2021-02-22T13:11:39+00:00
 -->
 <template lang="html">
-<v-container>
-  <v-row>
-    <v-col v-for="event in events" :key="event.id" cols="12" md="4">
-      <v-card>
-        <v-card-title>
-          <h1 class="black--text">Title: {{ event.title }}</h1>
-        </v-card-title>
+<v-container class="my-5">
+<v-row class="mb-5">
 
-        <v-card-text>
-          <p class="black--text">Event ID: {{ event.id }}</p>
-          <br>
-          <p class="black--text">Start: {{ event.start }}</p>
-          <br>
-          <p class="black--text">End: {{ event.end }}</p>
-          <v-divider/>
-          <!-- <p class="black--text">{{ event.todos }}</p> -->
-        </v-card-text>
-      </v-card>
-    </v-col>
-  </v-row>
+</v-row>
+<v-card flat tile class="px-2 " v-for="event in events" :key="event.id">
+<v-row row wrap >
+  <v-col cols="12" md="6" class="pl-2 border-left">
+    <div class="caption grey--text">
+      Event Title
+    </div>
+    <div>
+      {{event.title}}
+    </div>
+  </v-col>
+  <v-col xs="2">
+    <div class="caption grey--text">
+      Start Time
+    </div>
+    <div>
+      {{event.start}}
+    </div>
+  </v-col>
+  <v-col xs="2">
+    <div class="caption grey--text">
+      End Time
+    </div>
+    <div>
+      {{event.end}}
+    </div>
+  </v-col>
+  <v-col xs="2">
+    <div class="caption grey--text">
+      Date
+    </div>
+    <div>
+      23/02/2021
+    </div>
+
+  </v-col>
+  <v-col xs="2">
+
+    <div>
+    <v-btn  depressed color="primary text-xs-center">View</v-btn>
+    </div>
+
+  </v-col>
+
+</v-row>
+<v-divider />
+</v-card>
 </v-container>
 </template>
 
@@ -58,5 +88,11 @@ export default {
 }
 </script>
 
-<style lang="css" scoped>
+<style>
+.border-left{
+  background-color: #ffffff !important;
+     border-left: 5px solid #2196f3 !important
+}
+
+
 </style>

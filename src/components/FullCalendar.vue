@@ -67,10 +67,10 @@ export default {
 </script>
 
 <style>
-.fc .fc-col-header-cell-cushion {
+/* .fc .fc-col-header-cell-cushion {
   background-color: #000;
   color: #fff;
-}
+} */
 
 .fc .fc-prev-button {
   background-color: #2196F3;

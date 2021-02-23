@@ -5,17 +5,18 @@
 <template>
 <nav>
 
-  <v-app-bar app dense color="blue">
+  <v-app-bar app color="blue">
     <v-app-bar-nav-icon class="white--text" @click="sideBar = !sideBar"></v-app-bar-nav-icon>
     <v-toolbar-title class="white--text">SpareTime</v-toolbar-title>
     <v-spacer />
-    <v-toolbar-items>
-      <v-btn depressed class="blue text-uppercase white--text" to="/Projects">Login</v-btn>
-      <v-icon class="white--text">mdi-login-variant</v-icon>
+    <v-toolbar-items class="align-center">
+      <Popup/>
+      <v-btn depressed class="blue text-uppercase white--text" to="/Projects">Login <v-icon>mdi-login-variant</v-icon></v-btn>
+
     </v-toolbar-items>
   </v-app-bar>
 
-  <v-navigation-drawer app temporary v-model="sideBar">
+  <v-navigation-drawer app  v-model="sideBar">
     <v-list>
       <v-list-item v-for="link in links" :key="link.text" router :to="link.route">
         <v-list-item-icon>
@@ -32,6 +33,7 @@
 </template>
 
 <script>
+import Popup from './Popup.vue'
 export default {
   name: 'NavBar',
   data() {
@@ -56,11 +58,13 @@ export default {
     }
   },
   components: {
-
+  Popup
   },
 }
 </script>
 
 <style>
-
+.popup-mt{
+  margin-top: 14px;
+}
 </style>
