@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-02-11T14:34:16+00:00
-@Last modified time: 2021-02-22T11:50:31+00:00
+@Last modified time: 2021-02-24T14:56:39+00:00
 -->
 <template>
 <nav>
@@ -10,20 +10,21 @@
     <v-toolbar-title class="white--text">SpareTime</v-toolbar-title>
     <v-spacer />
     <v-toolbar-items class="align-center">
-      <Popup/>
-      <v-btn depressed class="blue text-uppercase white--text" to="/Projects">Login <v-icon>mdi-login-variant</v-icon></v-btn>
+      <Popup />
+      <v-btn depressed class="blue text-uppercase white--text" to="/Projects">Login <v-icon>mdi-login-variant</v-icon>
+      </v-btn>
 
     </v-toolbar-items>
   </v-app-bar>
 
-  <v-navigation-drawer app  v-model="sideBar">
+  <v-navigation-drawer app v-model="sideBar">
     <v-list>
       <v-list-item v-for="link in links" :key="link.text" router :to="link.route">
         <v-list-item-icon>
-          <v-icon class="black--text">{{link.icon}}</v-icon>
+          <v-icon class="black--text">{{ link.icon }}</v-icon>
         </v-list-item-icon>
         <v-list-item-content>
-          <v-list-item-title>{{ link.title}}</v-list-item-title>
+          <v-list-item-title>{{ link.title }}</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
     </v-list>
@@ -58,13 +59,13 @@ export default {
     }
   },
   components: {
-  Popup
+    Popup
   },
 }
 </script>
 
 <style>
-.popup-mt{
+.popup-mt {
   margin-top: 14px;
 }
 </style>
