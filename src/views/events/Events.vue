@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-02-22T10:58:01+00:00
-@Last modified time: 2021-02-22T13:11:39+00:00
+@Last modified time: 2021-02-25T18:45:30+00:00
 -->
 <template lang="html">
 <v-container class="my-5">
@@ -75,7 +75,11 @@ export default {
   },
   methods: {
     getEvents() {
-      axios.get('http://sparetime.project:8000/api/events')
+      let token = localStorage.getItem('token');
+
+      axios.get('http://sparetime.project:8000/api/events', {
+        headers: { Authorization: "Bearer " + token }
+      })
         .then(response => {
           console.log(response.data);
           this.events = response.data.data
@@ -89,10 +93,8 @@ export default {
 </script>
 
 <style>
-.border-left{
+.border-left {
   background-color: #ffffff !important;
-     border-left: 5px solid #2196f3 !important
+  border-left: 5px solid #2196f3 !important
 }
-
-
 </style>

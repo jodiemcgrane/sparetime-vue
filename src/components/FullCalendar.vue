@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-02-23T09:10:09+00:00
-@Last modified time: 2021-02-23T13:27:21+00:00
+@Last modified time: 2021-02-25T18:46:20+00:00
 -->
 <template>
 <div>
@@ -53,7 +53,11 @@ export default {
   },
   methods: {
     getEvents() {
-      axios.get('http://sparetime.project:8000/api/events')
+      let token = localStorage.getItem('token');
+
+      axios.get('http://sparetime.project:8000/api/events', {
+        headers: { Authorization: "Bearer " + token } 
+      })
         .then(response => {
           console.log(response.data);
           this.calendarPlugins.events = response.data.data

@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-02-11T14:34:16+00:00
-@Last modified time: 2021-02-24T14:56:39+00:00
+@Last modified time: 2021-02-25T18:21:45+00:00
 -->
 <template>
 <nav>
@@ -11,7 +11,7 @@
     <v-spacer />
     <v-toolbar-items class="align-center">
       <Popup />
-      <v-btn depressed class="blue text-uppercase white--text" to="/Projects">Login <v-icon>mdi-login-variant</v-icon>
+      <v-btn depressed class="blue text-uppercase white--text" to="/">Login <v-icon>mdi-login-variant</v-icon>
       </v-btn>
 
     </v-toolbar-items>
@@ -43,7 +43,7 @@ export default {
       links: [{
           icon: 'mdi-home-variant',
           title: 'Home',
-          route: '/'
+          route: '/home'
         },
         {
           icon: 'mdi-calendar-check',
