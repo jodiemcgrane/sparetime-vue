@@ -1,26 +1,29 @@
-<!--
-@Date:   2021-02-25T17:54:36+00:00
-@Last modified time: 2021-02-25T18:25:01+00:00
--->
+
 <template>
-<v-form>
+
   <v-container>
-    <v-row>
+<v-row align="center"
+      justify="center">
 
-      <v-col cols="12" md="4">
-        <v-text-field v-model="form.email" label="Email" required></v-text-field>
-      </v-col>
+      <v-col md="4">
 
-      <v-col cols="12" md="4">
+
+<v-card >
+  <v-card-title class="headline grey lighten-2" primary-title>
+    <v-icon>mdi-login-variant</v-icon>
+  </v-card-title>
+  <v-card-text>
+    <v-form>
+       <v-text-field v-model="form.email" label="Email" required></v-text-field>
         <v-text-field v-model="form.password" label="Password" required></v-text-field>
-      </v-col>
-
-    </v-row>
-
-    <v-btn @click="login()" elevation="2" large color="primary">LOGIN</v-btn>
-
+        <v-btn @click="login()" elevation="2" large color="primary">LOGIN</v-btn>
+        </v-form>
+      </v-card-text>
+</v-card>
+</v-col>
+</v-row>
   </v-container>
-</v-form>
+
 </template>
 
 <script>
@@ -62,4 +65,8 @@ export default {
 </script>
 
 <style lang="css" scoped>
+.home{
+  text-align: center;
+
+}
 </style>

@@ -7,7 +7,10 @@
 <v-row class="mb-5">
 
 </v-row>
-<v-card flat tile class="px-2 " v-for="event in events" :key="event.id">
+
+<v-card flat tile class="px-2 "
+
+v-for="event in events" :key="event.id">
 <v-row row wrap >
   <v-col cols="12" md="6" class="pl-2 border-left">
     <div class="caption grey--text">
@@ -45,7 +48,7 @@
   <v-col xs="2">
 
     <div>
-    <v-btn  depressed color="primary text-xs-center">View</v-btn>
+    <v-btn  depressed color="primary text-xs-center" to="/events/show">View</v-btn>
     </div>
 
   </v-col>
@@ -53,6 +56,7 @@
 </v-row>
 <v-divider />
 </v-card>
+
 </v-container>
 </template>
 
@@ -69,6 +73,7 @@ export default {
     return {
       events: [],
     }
+
   },
   mounted() {
     this.getEvents();
@@ -97,4 +102,6 @@ export default {
   background-color: #ffffff !important;
   border-left: 5px solid #2196f3 !important
 }
+
+
 </style>
