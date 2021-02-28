@@ -48,7 +48,9 @@ v-for="event in events" :key="event.id">
   <v-col xs="2">
 
     <div>
-    <v-btn  depressed color="primary text-xs-center" to="/events/show">View</v-btn>
+    <v-btn  depressed color="primary text-xs-center"
+
+    :to="{name: 'events_show', params: { id: event.id} }">View</v-btn>
     </div>
 
   </v-col>
