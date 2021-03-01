@@ -1,10 +1,18 @@
 <!--
 @Date:   2021-02-22T10:58:35+00:00
-@Last modified time: 2021-02-28T19:07:43+00:00
+@Last modified time: 2021-03-01T09:29:24+00:00
 -->
 <template>
 <div id="app">
-  <pie-chart :data="chartData" :options="chartOptions"></pie-chart>
+  <v-row justify="center">
+    <v-col cols="6">
+      <v-card>
+        <v-card-text>
+          <pie-chart :data="chartData" :options="chartOptions"></pie-chart>
+        </v-card-text>
+      </v-card>
+    </v-col>
+  </v-row>
 </div>
 </template>
 
@@ -23,11 +31,11 @@ export default {
       chartData: {
         hoverBackgroundColor: "red",
         hoverBorderWidth: 10,
-        labels: ["Green", "Red", "Blue"],
+        labels: ["Completed", "Not Completed"],
         datasets: [{
           label: "Data One",
-          backgroundColor: ["#41B883", "#E46651", "#00D8FF"],
-          data: [1, 10, 5]
+          backgroundColor: ["#41B883", "#E46651"],
+          data: [1, 10]
         }]
       }
     };
