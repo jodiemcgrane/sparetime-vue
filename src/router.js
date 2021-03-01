@@ -37,7 +37,7 @@ export default new Router({
       component: Events
     },
     {
-      path: '/events/show',
+      path: '/events/show/:id',
       name: 'events_show',
       component: EventsShow
     },

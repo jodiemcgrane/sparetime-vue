@@ -137,7 +137,9 @@ export default {
   },
   methods: {
     createEvent() {
+        let token = localStorage.getItem('token');
       axios.post('http://sparetime.project:8000/api/events', {
+          headers: { Authorization: "Bearer " + token },
         title: this.form.title,
         start_date: this.form.date,
         start_time: this.form.start_time,
