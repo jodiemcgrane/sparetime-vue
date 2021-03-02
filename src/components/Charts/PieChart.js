@@ -4,7 +4,7 @@
  */
 import {
   Doughnut,
-  mixins
+  //mixins
 } from "vue-chartjs";
 
 export default {

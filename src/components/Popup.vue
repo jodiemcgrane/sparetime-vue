@@ -139,12 +139,14 @@ export default {
     createEvent() {
         let token = localStorage.getItem('token');
       axios.post('http://sparetime.project:8000/api/events', {
-          headers: { Authorization: "Bearer " + token },
+
+
         title: this.form.title,
         start_date: this.form.date,
         start_time: this.form.start_time,
         end_time: this.form.end_time
-      })
+
+      },{headers: { Authorization: "Bearer " + token }})
       .then(response => {
         console.log(response.data);
         this.$router.replace({
@@ -156,6 +158,8 @@ export default {
         console.log(error.response.data)
       })
     }
+
+
   },
 }
 </script>
