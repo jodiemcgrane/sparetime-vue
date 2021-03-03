@@ -120,7 +120,7 @@
 import axios from 'axios';
 
 export default {
-    name: 'Popup',
+    name: 'UpdatePopup',
   data() {
     return {
       dialog: false,
