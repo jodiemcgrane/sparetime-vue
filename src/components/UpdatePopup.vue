@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-02-24T12:51:59+00:00
-@Last modified time: 2021-03-04T13:57:11+00:00
+@Last modified time: 2021-02-27T16:16:45+00:00
 -->
 <template lang="html">
 
@@ -120,7 +120,7 @@
 import axios from 'axios';
 
 export default {
-  name: 'Popup',
+    name: 'UpdatePopup',
   data() {
     return {
       dialog: false,
@@ -138,30 +138,26 @@ export default {
   },
   methods: {
     createEvent() {
-      let token = localStorage.getItem('token');
+        let token = localStorage.getItem('token');
       axios.post('http://sparetime.project:8000/api/events', {
 
 
-          title: this.form.title,
-          start_date: this.form.date,
-          start_time: this.form.start_time,
-          end_time: this.form.end_time
+        title: this.form.title,
+        start_date: this.form.date,
+        start_time: this.form.start_time,
+        end_time: this.form.end_time
 
-        }, {
-          headers: {
-            Authorization: "Bearer " + token
-          }
-        })
-        .then(response => {
-          console.log(response.data);
-          this.$router.replace({
-            name: 'home'
-          });
-        })
-        .catch(error => {
-          console.log(error)
-          console.log(error.response.data)
-        })
+      },{headers: { Authorization: "Bearer " + token }})
+      .then(response => {
+        console.log(response.data);
+        this.$router.replace({
+          name: 'home'
+        });
+      })
+      .catch(error => {
+        console.log(error)
+        console.log(error.response.data)
+      })
     }
 
 

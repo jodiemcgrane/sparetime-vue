@@ -1,12 +1,13 @@
 /**
  * @Date:   2021-02-18T16:10:28+00:00
- * @Last modified time: 2021-02-25T17:55:23+00:00
+ * @Last modified time: 2021-03-04T13:58:05+00:00
  */
 
 import Vue from 'vue'
 import Router from 'vue-router'
 
 import Welcome from './views/Welcome'
+import Register from './views/Register'
 
 import Home from './views/Home'
 import Events from './views/events/Events'
@@ -25,6 +26,11 @@ export default new Router({
       path: '/',
       name: 'welcome',
       component: Welcome
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: Register
     },
     {
       path: '/home',

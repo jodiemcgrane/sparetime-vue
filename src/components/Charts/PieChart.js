@@ -1,12 +1,12 @@
 /**
  * @Date:   2021-02-28T19:05:47+00:00
- * @Last modified time: 2021-03-01T09:21:29+00:00
+ * @Last modified time: 2021-03-04T13:49:24+00:00
  */
 
 
 import {
   Doughnut,
-  // mixins
+  //mixins
 } from "vue-chartjs";
 
 export default {

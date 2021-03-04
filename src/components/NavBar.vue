@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-02-11T14:34:16+00:00
-@Last modified time: 2021-02-25T18:21:45+00:00
+@Last modified time: 2021-03-04T14:08:25+00:00
 -->
 <template>
 <nav>
@@ -11,8 +11,9 @@
     <v-spacer />
     <v-toolbar-items class="align-center">
       <Popup />
-      <v-btn depressed class="blue text-uppercase white--text" to="/">Login <v-icon>mdi-login-variant</v-icon>
-      </v-btn>
+      <v-btn depressed class="blue text-uppercase white--text" to="/">Login <v-icon>mdi-login-variant</v-icon></v-btn>
+      <v-btn @click="logout()" depressed class="blue text-uppercase white--text" to="/">Logout <v-icon>mdi-logout</v-icon></v-btn>
+      <v-btn depressed class="blue text-uppercase white--text" to="/register">Register <v-icon>mdi-account-plus</v-icon></v-btn>
 
     </v-toolbar-items>
   </v-app-bar>
@@ -34,7 +35,9 @@
 </template>
 
 <script>
+import axios from 'axios';
 import Popup from './Popup.vue'
+
 export default {
   name: 'NavBar',
   data() {
@@ -60,6 +63,28 @@ export default {
   },
   components: {
     Popup
+  },
+  methods: {
+    logout() {
+      let token = localStorage.getItem('token')
+
+      axios.get('http://sparetime.project:8000/api/logout', {
+          headers: {
+            Authorization: "Bearer " + token
+          }
+        })
+        .then(response => {
+          console.log(response.data);
+          this.$router.replace({
+            name: 'welcome'
+          });
+        })
+        .catch(error => {
+          console.log(error)
+          console.log(error.response.data)
+        })
+      localStorage.removeItem('token');
+    }
   },
 }
 </script>
