@@ -8,7 +8,7 @@
 
 <v-card flat tile class="px-2"
 
-v-for="event in events" :key="event.id">
+v-for="event in displayEvents" :key="event.id">
 <v-row row wrap >
   <v-col cols="12" md="6" class="pl-2 border-left">
     <div class="caption grey--text">
@@ -72,6 +72,13 @@ export default {
   data() {
     return {
       events: [],
+      DisplayEvent:{
+        id:'',
+        title: '',
+        date:'',
+        start_time:'',
+        end_time:''
+      },
       displayEvents: []
     }
 
@@ -89,9 +96,18 @@ export default {
         .then(response => {
           console.log(response.data);
           this.events = response.data.data
-          
-
+          this.events.forEach(event => {
+            this.displayEvents.push(
+              {
+              id: event.id,
+              title: event.title,
+              date: event.start,
+              start: event.start,
+              end: event.end
+            }
+          )
         })
+          })
         .catch(error => {
           console.log(error)
         })
