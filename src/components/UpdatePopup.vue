@@ -8,10 +8,10 @@
     <v-dialog v-model="dialog" width="500">
       <template v-slot:activator="{ on }">
         <v-btn depressed
-         class="blue text-uppercase white--text" v-on="on"><v-icon>mdi-calendar-plus</v-icon>Event</v-btn>
+         class="amber darken-1 text-uppercase white--text" v-on="on"><v-icon>mdi-calendar-plus</v-icon>Event</v-btn>
       </template>
       <v-card>
-        <v-card-title class="headline grey lighten-2" primary-title>Add a New Project</v-card-title>
+        <v-card-title class="headline grey lighten-2" primary-title>Edit Event</v-card-title>
         <v-card-text>
           <v-form class="px-3">
             <v-text-field v-model="form.title" required label="Title" prepend-icon="mdi-folder"></v-text-field>
@@ -107,7 +107,7 @@
 
         </v-menu>
 
-            <v-btn @click="createEvent()" depressed class="success mx-0 mt-3">Add Event</v-btn>
+            <v-btn @click="updateEvent()" depressed class="success mx-0 mt-3">Submit</v-btn>
 
           </v-form>
         </v-card-text>
@@ -121,14 +121,17 @@ import axios from 'axios';
 
 export default {
     name: 'UpdatePopup',
+    props: [
+      'eventData'
+],
   data() {
     return {
       dialog: false,
       form: {
-        title: "",
-        date: "",
-        start_time: "",
-        end_time: ""
+        title: this.eventData.title,
+        date: this.eventData.start_date,
+        start_time: this.eventData.start_time,
+        end_time: this.eventData.end_time
       },
       menu_date: false,
       menu_start_time: false,
@@ -137,9 +140,9 @@ export default {
     }
   },
   methods: {
-    createEvent() {
+    updateEvent() {
         let token = localStorage.getItem('token');
-      axios.post('http://sparetime.project:8000/api/events', {
+      axios.put(`http://sparetime.project:8000/api/events/${this.eventData.id}`, {
 
 
         title: this.form.title,
@@ -151,7 +154,7 @@ export default {
       .then(response => {
         console.log(response.data);
         this.$router.replace({
-          name: 'home'
+          name: 'events'
         });
       })
       .catch(error => {

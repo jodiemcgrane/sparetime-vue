@@ -4,11 +4,9 @@
 -->
 <template lang="html">
 <v-container class="my-5">
-<v-row class="mb-5">
 
-</v-row>
 
-<v-card flat tile class="px-2 "
+<v-card flat tile class="px-2"
 
 v-for="event in events" :key="event.id">
 <v-row row wrap >
@@ -74,6 +72,7 @@ export default {
   data() {
     return {
       events: [],
+      displayEvents: []
     }
 
   },
@@ -90,6 +89,8 @@ export default {
         .then(response => {
           console.log(response.data);
           this.events = response.data.data
+          
+
         })
         .catch(error => {
           console.log(error)

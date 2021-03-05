@@ -13,6 +13,10 @@
           <br>
           {{event.end}}
             </v-card-text>
+            <UpdatePopup :eventData="event"/>
+            <v-btn depressed
+            @click="removeEvent()"
+            class="error text-uppercase white--text" >REMOVE</v-btn>
   </v-card>
 </v-col>
 
@@ -43,12 +47,13 @@
 
 <script>
 import axios from 'axios';
-
+import UpdatePopup from '@/components/UpdatePopup.vue'
 import TodoList from "@/components/Todo/TodoList"
 export default {
 
 components:{
-    TodoList
+    TodoList,
+    UpdatePopup,
 },
 data() {
   return {
@@ -69,6 +74,21 @@ methods: {
       .then(response => {
         console.log(response.data);
         this.event = response.data.data
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  },
+  removeEvent(){
+      let token = localStorage.getItem('token');
+      axios.delete(`http://sparetime.project:8000/api/events/${this.id}`,{
+        headers: { Authorization: "Bearer " + token }
+      })
+      .then(response => {
+        console.log(response.data);
+        this.$router.replace({
+          name: 'events'
+        });
       })
       .catch(error => {
         console.log(error)
