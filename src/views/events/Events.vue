@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-02-22T10:58:01+00:00
-@Last modified time: 2021-03-06T17:35:42+00:00
+@Last modified time: 2021-03-06T20:48:41+00:00
 -->
 <template lang="html">
 <v-container class="my-5">
@@ -39,7 +39,7 @@ v-for="event in displayEvents" :key="event.id">
       Date
     </div>
     <div>
-      23/02/2021
+      {{event.date}}
     </div>
 
   </v-col>
@@ -102,9 +102,9 @@ export default {
               {
               id: event.id,
               title: event.title,
-              date: event.start,
-              start: moment(event.start).format('h:mm:ss'),
-              end: moment(event.end).format('h:mm:ss')
+              date: moment(event.start).format('DD-MM-YYYY'),
+              start: moment(event.start).format('h:mm'),
+              end: moment(event.end).format('h:mm')
             }
           )
         })
