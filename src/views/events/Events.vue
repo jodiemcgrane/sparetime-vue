@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-02-22T10:58:01+00:00
-@Last modified time: 2021-02-25T18:45:30+00:00
+@Last modified time: 2021-03-06T17:35:42+00:00
 -->
 <template lang="html">
 <v-container class="my-5">
@@ -62,6 +62,7 @@ v-for="event in displayEvents" :key="event.id">
 
 <script>
 import axios from 'axios';
+import moment from 'moment';
 
 export default {
   name: 'Events',
@@ -102,8 +103,8 @@ export default {
               id: event.id,
               title: event.title,
               date: event.start,
-              start: event.start,
-              end: event.end
+              start: moment(event.start).format('h:mm:ss'),
+              end: moment(event.end).format('h:mm:ss')
             }
           )
         })
@@ -113,6 +114,7 @@ export default {
         })
     }
   },
+
 }
 </script>
 

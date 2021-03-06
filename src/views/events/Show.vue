@@ -1,3 +1,10 @@
+<!--
+@Date:   2021-03-05T21:28:59+00:00
+@Last modified time: 2021-03-05T21:31:43+00:00
+-->
+
+
+
 <template lang="html">
 <v-container class="my-5">
 <v-row>
@@ -57,7 +64,7 @@ components:{
 },
 data() {
   return {
-    event: [],
+    event: {},
   }
 },
 mounted(){
