@@ -29,7 +29,7 @@
 <v-col cols="4">
   <v-card>
       <v-card-text>
-<TodoList />
+<TodoList :eventDataTodos="DisplayEvent" />
 </v-card-text>
 </v-card>
 </v-col>
@@ -38,7 +38,7 @@
 
 <v-row>
 <v-col>
-    <v-card v-for="todo in event.todos" :key="todo.id">
+    <v-card v-for="todo in DisplayEvent.todos" :key="todo.id">
       <v-card-text>
         {{todo.title}}
 
@@ -69,7 +69,9 @@ export default {
         title: '',
         date: '',
         start_time: '',
-        end_time: ''
+        end_time: '',
+        todos: []
+
       },
     }
   },
@@ -94,7 +96,9 @@ export default {
             title: this.DisplayEvent.title,
             date: moment(this.DisplayEvent.start).format('DD-MM-YYYY'),
             start_time: moment(this.DisplayEvent.start).format('h:mm'),
-            end_time: moment(this.DisplayEvent.end).format('h:mm')
+            end_time: moment(this.DisplayEvent.end).format('h:mm'),
+            todos: this.DisplayEvent.todos
+
           }
 
         })

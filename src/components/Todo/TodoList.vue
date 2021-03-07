@@ -5,7 +5,7 @@
     class="input"
     placeholder="Enter Todo"
     solo
-    append-icon="mdi-comment-edit-ouotline"
+    append-icon="mdi-comment-edit-outline"
     v-model="todo"
     v-on:keyup.enter="addNewTodo()"
     ></v-text-field>
@@ -20,7 +20,9 @@
 import TodoItem from "./TodoItem"
 export default {
   name: 'TodoList',
-
+  props: [
+    'eventDataTodos'
+],
   components:{
     TodoItem
   },
@@ -28,24 +30,12 @@ export default {
   data(){
     return{
 
-      list: [{
-          id: 1,
-          text: "Clean the house",
-          done: true
-        },
-        {
-          id: 2,
-          text: "Ignore the work you have to do",
-          done: false
-        },
-        {
-          id: 3,
-          text: "Do all of the work you ignored and panic",
-          done: false
-        }
-      ],
+      list: this.eventDataTodos.todos,
       todo: ''
     }
+  },
+  mounted(){
+    this.list
   },
   methods: {
     addNewTodo() {

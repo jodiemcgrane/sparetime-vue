@@ -1,7 +1,7 @@
 <template lang="html">
   <v-list-item>
-  <span v-if="todo.done" class="done">{{ todo.text }}</span>
-  <span v-else> {{ todo.text }}</span>
+  <span v-if="todo.done" class="done">{{ todo.id }}</span>
+  <span v-else> {{ todo.title }}</span>
 
   <v-spacer></v-spacer>
   <v-btn icon color="success" @click="completeTodo(todo)"><v-icon>mdi-comment-check-outline</v-icon></v-btn>

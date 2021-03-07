@@ -129,7 +129,7 @@ export default {
       dialog: false,
       form: {
         title: this.eventData.title,
-        date: this.eventData.start_date,
+        date: this.eventData.date,
         start_time: this.eventData.start_time,
         end_time: this.eventData.end_time
       },
