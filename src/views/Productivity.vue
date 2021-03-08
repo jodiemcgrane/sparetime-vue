@@ -1,55 +1,60 @@
 <!--
 @Date:   2021-02-22T10:58:35+00:00
-@Last modified time: 2021-03-01T09:29:24+00:00
+@Last modified time: 2021-03-08T18:08:50+00:00
 -->
 <template>
-<div id="app">
-  <v-row justify="center">
-    <v-col cols="6">
-      <v-card>
-        <v-card-text>
-          <pie-chart :data="chartData" :options="chartOptions"></pie-chart>
-        </v-card-text>
-      </v-card>
-    </v-col>
-  </v-row>
+<v-container>
+  <div>
+  <line-chart
+  v-if="loaded"
+  :chartdata="chartdata"
+  />
 </div>
+</v-container>
 </template>
 
 <script>
-import PieChart from "../components/Charts/PieChart.js";
+import LineChart from '../components/Chart.vue'
+import axios from 'axios';
+
 export default {
-  name: "App",
+  name: "Productivity",
   components: {
-    PieChart
+    LineChart,
   },
   data() {
     return {
-      chartOptions: {
-        hoverBorderWidth: 20
-      },
-      chartData: {
-        hoverBackgroundColor: "red",
-        hoverBorderWidth: 10,
-        labels: ["Completed", "Not Completed"],
-        datasets: [{
-          label: "Data One",
-          backgroundColor: ["#41B883", "#E46651"],
-          data: [1, 10]
-        }]
-      }
+      loaded: false,
+      chartdata: []
     };
-  }
+  },
+  mounted() {
+    this.loaded = false
+    this.getEvents()
+  },
+  methods: {
+    getEvents() {
+
+      let token = localStorage.getItem('token');
+
+      axios.get('http://sparetime.project:8000/api/events', {
+          headers: {
+            Authorization: "Bearer " + token
+          }
+        })
+        .then(response => {
+          console.log(response.data);
+          this.chartdata = response.data.data
+          this.loaded = true
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    },
+  },
 };
 </script>
 
 <style>
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>

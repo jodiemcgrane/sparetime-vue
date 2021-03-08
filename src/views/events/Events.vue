@@ -1,15 +1,19 @@
 <!--
 @Date:   2021-02-22T10:58:01+00:00
-@Last modified time: 2021-03-06T20:48:41+00:00
+@Last modified time: 2021-03-08T18:25:12+00:00
 -->
 <template lang="html">
 <v-container class="my-5">
 
 
-<v-card flat tile class="px-2"
+<v-card
+  flat tile class="px-2"
+  v-for="event in displayEvents"
+  :key="event.id"
+  >
 
-v-for="event in displayEvents" :key="event.id">
-<v-row row wrap >
+<v-row row wrap :class="`event ${event.status}`" >
+
   <v-col cols="12" md="6" class="pl-2 border-left">
     <div class="caption grey--text">
       Event Title
@@ -18,6 +22,7 @@ v-for="event in displayEvents" :key="event.id">
       {{event.title}}
     </div>
   </v-col>
+
   <v-col xs="2">
     <div class="caption grey--text">
       Start Time
@@ -26,6 +31,7 @@ v-for="event in displayEvents" :key="event.id">
       {{event.start}}
     </div>
   </v-col>
+
   <v-col xs="2">
     <div class="caption grey--text">
       End Time
@@ -34,6 +40,7 @@ v-for="event in displayEvents" :key="event.id">
       {{event.end}}
     </div>
   </v-col>
+
   <v-col xs="2">
     <div class="caption grey--text">
       Date
@@ -41,16 +48,23 @@ v-for="event in displayEvents" :key="event.id">
     <div>
       {{event.date}}
     </div>
-
   </v-col>
+
   <v-col xs="2">
-
-    <div>
-    <v-btn  depressed color="primary text-xs-center"
-
-    :to="{name: 'events_show', params: { id: event.id} }">View</v-btn>
+    <div class="caption grey--text">
+      Status
     </div>
 
+    <div>
+      <v-chip small :class="`${event.status} white--text caption my-2`">{{ event.status }}</v-chip>
+    </div>
+  </v-col>
+
+  <v-col xs="2">
+    <div>
+    <v-btn  depressed color="primary text-xs-center"
+    :to="{name: 'events_show', params: { id: event.id} }">View</v-btn>
+    </div>
   </v-col>
 
 </v-row>
@@ -73,12 +87,13 @@ export default {
   data() {
     return {
       events: [],
-      DisplayEvent:{
-        id:'',
+      DisplayEvent: {
+        id: '',
         title: '',
-        date:'',
-        start_time:'',
-        end_time:''
+        date: '',
+        start_time: '',
+        end_time: '',
+        status: ''
       },
       displayEvents: []
     }
@@ -92,23 +107,24 @@ export default {
       let token = localStorage.getItem('token');
 
       axios.get('http://sparetime.project:8000/api/events', {
-        headers: { Authorization: "Bearer " + token }
-      })
+          headers: {
+            Authorization: "Bearer " + token
+          }
+        })
         .then(response => {
           console.log(response.data);
           this.events = response.data.data
           this.events.forEach(event => {
-            this.displayEvents.push(
-              {
+            this.displayEvents.push({
               id: event.id,
               title: event.title,
               date: moment(event.start).format('DD-MM-YYYY'),
               start: moment(event.start).format('h:mm'),
-              end: moment(event.end).format('h:mm')
-            }
-          )
-        })
+              end: moment(event.end).format('h:mm'),
+              status: event.status
+            })
           })
+        })
         .catch(error => {
           console.log(error)
         })
@@ -119,10 +135,31 @@ export default {
 </script>
 
 <style>
-.border-left {
+/* .border-left {
   background-color: #ffffff !important;
   border-left: 5px solid #2196f3 !important
+} */
+.event.complete {
+  border-left: 4px solid #3cd1c2;
 }
 
+.event.ongoing {
+  border-left: 4px solid orange;
+}
 
+.event.overdue {
+  border-left: 4px solid tomato;
+}
+
+.v-chip.complete {
+  background: #3cd1c2 !important;
+}
+
+.v-chip.ongoing {
+  background: #ffaa2c !important;
+}
+
+.v-chip.overdue {
+  background: #f83e70 !important;
+}
 </style>
