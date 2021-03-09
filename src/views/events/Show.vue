@@ -8,18 +8,19 @@
   <v-col cols="6">
   <v-card>
       <v-card-title>
-    {{DisplayEvent.title}}
+    {{event.title}}
       </v-card-title>
             <v-card-text>
           Information:  {{$route.params.id}}
+
           <br>
-          {{DisplayEvent.date}}
+          {{event.start | moment("h:mm a")}}
           <br>
-          {{DisplayEvent.start_time}}
+          {{event.end | moment("h:mm a")}}
           <br>
-          {{DisplayEvent.end_time}}
+          {{event.start | moment("DD/MM/YYYY")}}
             </v-card-text>
-            <UpdatePopup :eventData="DisplayEvent"/>
+            <UpdatePopup :eventData="formData"/>
             <v-btn depressed
             @click="removeEvent()"
             class="error text-uppercase white--text" >REMOVE</v-btn>
@@ -29,7 +30,7 @@
 <v-col cols="4">
   <v-card>
       <v-card-text>
-<TodoList :eventDataTodos="DisplayEvent" />
+<TodoList :eventDataTodos="event" />
 </v-card-text>
 </v-card>
 </v-col>
@@ -38,7 +39,7 @@
 
 <v-row>
 <v-col>
-    <v-card v-for="todo in DisplayEvent.todos" :key="todo.id">
+    <v-card v-for="todo in event.todos" :key="todo.id">
       <v-card-text>
         {{todo.title}}
 
@@ -54,6 +55,7 @@
 <script>
 import axios from 'axios';
 import moment from 'moment';
+
 import UpdatePopup from '@/components/UpdatePopup.vue'
 import TodoList from "@/components/Todo/TodoList"
 export default {
@@ -64,15 +66,15 @@ export default {
   },
   data() {
     return {
-      DisplayEvent: {
-        id: '',
-        title: '',
-        date: '',
-        start_time: '',
-        end_time: '',
-        todos: []
+      event: {},
 
-      },
+       formData: {},
+      //   title: this.event.title,
+      //   date: moment(this.event.start).format("YYYY-MM-DD"),
+      //   start_time: moment(this.event.start).format("HH:mm"),
+      //   end_time: moment(this.event.end).format("HH:mm")
+      // },
+
     }
   },
   mounted() {
@@ -90,17 +92,14 @@ export default {
         })
         .then(response => {
           console.log(response.data);
-          this.DisplayEvent = response.data.data
-          this.DisplayEvent = {
-            id: this.DisplayEvent.id,
-            title: this.DisplayEvent.title,
-            date: moment(this.DisplayEvent.start).format('DD-MM-YYYY'),
-            start_time: moment(this.DisplayEvent.start).format('h:mm'),
-            end_time: moment(this.DisplayEvent.end).format('h:mm'),
-            todos: this.DisplayEvent.todos
-
+          this.event = response.data.data;
+          this.formData = {
+            id: response.data.data.id,
+            title: response.data.data.title,
+            date: moment(response.data.data.start).format("YYYY-MM-DD"),
+            start_time: moment(response.data.data.start).format("HH:mm:ss"),
+            end_time: moment(response.data.data.end).format("HH:mm:ss")
           }
-
         })
         .catch(error => {
           console.log(error)

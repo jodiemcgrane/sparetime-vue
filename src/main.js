@@ -16,6 +16,8 @@ import Chart from 'chart.js'
 import vuetify from '@/plugins/vuetify' // path to vuetify export
 import router from './router'
 
+Vue.use(require('vue-moment'));
+
 Vue.use(BootstrapVue)
 Vue.use(Chartkick.use(Chart))
 

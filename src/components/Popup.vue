@@ -11,7 +11,7 @@
          class="blue text-uppercase white--text" v-on="on"><v-icon>mdi-calendar-plus</v-icon>Event</v-btn>
       </template>
       <v-card>
-        <v-card-title class="headline grey lighten-2" primary-title>Add a New Project</v-card-title>
+        <v-card-title class="headline grey lighten-2" primary-title>Add a new event</v-card-title>
         <v-card-text>
           <v-form class="px-3">
             <v-text-field v-model="form.title" required label="Title" prepend-icon="mdi-folder"></v-text-field>

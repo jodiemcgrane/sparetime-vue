@@ -8,7 +8,7 @@
 
 <v-card
   flat tile class="px-2"
-  v-for="event in displayEvents"
+  v-for="event in events"
   :key="event.id"
   >
 
@@ -28,7 +28,8 @@
       Start Time
     </div>
     <div>
-      {{event.start}}
+
+      {{event.start | moment("HH:mm")}}
     </div>
   </v-col>
 
@@ -37,7 +38,7 @@
       End Time
     </div>
     <div>
-      {{event.end}}
+      {{event.end | moment("HH:mm")}}
     </div>
   </v-col>
 
@@ -46,7 +47,7 @@
       Date
     </div>
     <div>
-      {{event.date}}
+      {{event.start | moment("DD/MM/YYYY")}}
     </div>
   </v-col>
 
@@ -76,7 +77,7 @@
 
 <script>
 import axios from 'axios';
-import moment from 'moment';
+
 
 export default {
   name: 'Events',
@@ -87,15 +88,6 @@ export default {
   data() {
     return {
       events: [],
-      DisplayEvent: {
-        id: '',
-        title: '',
-        date: '',
-        start_time: '',
-        end_time: '',
-        status: ''
-      },
-      displayEvents: []
     }
 
   },
@@ -113,23 +105,15 @@ export default {
         })
         .then(response => {
           console.log(response.data);
-          this.events = response.data.data
-          this.events.forEach(event => {
-            this.displayEvents.push({
-              id: event.id,
-              title: event.title,
-              date: moment(event.start).format('DD-MM-YYYY'),
-              start: moment(event.start).format('h:mm'),
-              end: moment(event.end).format('h:mm'),
-              status: event.status
-            })
-          })
+          this.events = response.data.data;
+
+
         })
         .catch(error => {
           console.log(error)
         })
     }
-  },
+  }
 
 }
 </script>
