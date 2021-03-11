@@ -25,7 +25,7 @@ export default {
       this.$emit("complete-todo", todo);
     },
     deleteTodo(todo){
-      this.$emit("delete-todo", todo);
+      this.$emit("delete-todo", todo.id);
     }
 }
 }

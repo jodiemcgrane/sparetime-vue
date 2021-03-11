@@ -30,7 +30,7 @@
 <v-col cols="4">
   <v-card>
       <v-card-text>
-<TodoList :eventDataTodos="formData" :event_id="id" />
+<TodoList  />
 </v-card-text>
 </v-card>
 </v-col>
@@ -105,24 +105,25 @@ export default {
           console.log(error)
         })
     },
-    // removeEvent() {
-    //   let token = localStorage.getItem('token');
-    //   axios.delete(`http://sparetime.project:8000/api/events/${this.id}`, {
-    //       headers: {
-    //         Authorization: "Bearer " + token
-    //       }
-    //     })
-    //     .then(response => {
-    //       console.log(response.data);
-    //       this.$router.replace({
-    //         name: 'events'
-    //       });
-    //     })
-    //     .catch(error => {
-    //       console.log(error)
-    //     })
-    // }
+    removeEvent() {
+      let token = localStorage.getItem('token');
+      axios.delete(`http://sparetime.project:8000/api/events/${this.id}`, {
+          headers: {
+            Authorization: "Bearer " + token
+          }
+        })
+        .then(response => {
+          console.log(response.data);
+          this.$router.replace({
+            name: 'events'
+          });
+        })
+        .catch(error => {
+          console.log(error)
+        })
+
   },
+}
 }
 </script>
 

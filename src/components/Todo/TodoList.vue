@@ -36,14 +36,14 @@ export default {
     }
   },
   mounted(){
-
+  this.event_id = this.$route.params.id
     this.getTodos();
   },
   methods: {
     getTodos(){
       let token = localStorage.getItem('token');
 
-      axios.get('http://sparetime.project:8000/api/todos', {
+      axios.get(`http://sparetime.project:8000/api/events/${this.event_id}/todos`, {
           headers: {
             Authorization: "Bearer " + token
           }
@@ -86,13 +86,33 @@ export default {
       this.list[todoIndex].done = true;
       this.saveTodo();
     },
+
     deleteTodo(todo){
-      const todoIndex = this.list.indexOf(todo);
-      if(this.list[todoIndex] === todo){
-      this.list.splice(todoIndex, 1);
-      alert("You are about to deleted a ToDo");
-      this.saveTodo()
-    }
+  
+      let token = localStorage.getItem('token');
+      axios.delete(`http://sparetime.project:8000/api/todos/${todo}`, {
+          headers: {
+            Authorization: "Bearer " + token
+          }
+        })
+        .then(response => {
+          console.log(response.data);
+
+        })
+        .catch(error => {
+          console.log(error)
+        })
+
+
+
+
+
+      // const todoIndex = this.list.indexOf(todo);
+      // if(this.list[todoIndex] === todo){
+      // this.list.splice(todoIndex, 1);
+      // alert("You are about to deleted a ToDo");
+      // this.saveTodo()
+
   },
     saveTodo() {
       let parsed = JSON.stringify(this.list);
