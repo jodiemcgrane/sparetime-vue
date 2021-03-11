@@ -16,13 +16,14 @@
 </template>
 
 <script>
-
+import axios from "axios"
 import TodoItem from "./TodoItem"
 export default {
   name: 'TodoList',
+
   props: [
-    'eventDataTodos'
-],
+
+  ],
   components:{
     TodoItem
   },
@@ -30,26 +31,55 @@ export default {
   data(){
     return{
 
-      list: this.eventDataTodos.todos,
+      list: [],
       todo: ''
     }
   },
   mounted(){
-    this.list
+
+    this.getTodos();
   },
   methods: {
+    getTodos(){
+      let token = localStorage.getItem('token');
+
+      axios.get('http://sparetime.project:8000/api/todos', {
+          headers: {
+            Authorization: "Bearer " + token
+          }
+        })
+        .then(response => {
+          console.log(response.data);
+          this.list = response.data.data;
+
+
+        })
+    },
     addNewTodo() {
       if(!this.todo){
         alert("Please enter a todo");
       }
-      const newId = Math.max.apply(null, this.list.map(t =>t.id))+1;
-      this.list.push({
-        id: newId,
-        text: this.todo,
-        done: false
-      });
-      this.todo = "";
-      this.saveTodo();
+      let token = localStorage.getItem('token');
+      axios.post(`http://sparetime.project:8000/api/events/${this.event_id}/todos`, {
+
+
+          title: this.todo,
+          description: this.todo
+
+        }, {
+          headers: {
+            Authorization: "Bearer " + token
+          }
+        });
+
+      // const newId = Math.max.apply(null, this.list.map(t =>t.id))+1;
+      // this.list.push({
+      //   id: newId,
+      //   text: this.todo,
+      //   done: false
+      // });
+      // this.todo = "";
+      // this.saveTodo();
     },
     completeTodo(todo){
       const todoIndex = this.list.indexOf(todo);

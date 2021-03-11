@@ -14,7 +14,7 @@
 import FullCalendar from "../components/FullCalendar"
 
 export default {
-  name: 'Home',
+  name: 'home',
   components: {
     FullCalendar,
   }

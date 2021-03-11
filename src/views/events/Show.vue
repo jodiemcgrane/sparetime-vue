@@ -8,17 +8,17 @@
   <v-col cols="6">
   <v-card>
       <v-card-title>
-    {{event.title}}
+    {{formData.title}}
       </v-card-title>
             <v-card-text>
           Information:  {{$route.params.id}}
 
           <br>
-          {{event.start | moment("h:mm a")}}
+          {{formData.start_time}}
           <br>
-          {{event.end | moment("h:mm a")}}
+          {{formData.end_time}}
           <br>
-          {{event.start | moment("DD/MM/YYYY")}}
+          {{formData.date}}
             </v-card-text>
             <UpdatePopup :eventData="formData"/>
             <v-btn depressed
@@ -30,14 +30,14 @@
 <v-col cols="4">
   <v-card>
       <v-card-text>
-<TodoList :eventDataTodos="event" />
+<TodoList :eventDataTodos="formData" :event_id="id" />
 </v-card-text>
 </v-card>
 </v-col>
 </v-row>
 
 
-<v-row>
+<!-- <v-row>
 <v-col>
     <v-card v-for="todo in event.todos" :key="todo.id">
       <v-card-text>
@@ -46,7 +46,7 @@
     </v-card-text>
     </v-card>
   </v-col>
-</v-row>
+</v-row> -->
 
 
 </v-container>
@@ -66,7 +66,7 @@ export default {
   },
   data() {
     return {
-      event: {},
+      //event: {},
 
        formData: {},
       //   title: this.event.title,
@@ -84,7 +84,6 @@ export default {
   methods: {
     getEvent() {
       let token = localStorage.getItem('token');
-
       axios.get(`http://sparetime.project:8000/api/events/${this.id}`, {
           headers: {
             Authorization: "Bearer " + token
@@ -92,36 +91,37 @@ export default {
         })
         .then(response => {
           console.log(response.data);
-          this.event = response.data.data;
+          //this.event = response.data.data;
           this.formData = {
             id: response.data.data.id,
             title: response.data.data.title,
             date: moment(response.data.data.start).format("YYYY-MM-DD"),
             start_time: moment(response.data.data.start).format("HH:mm:ss"),
-            end_time: moment(response.data.data.end).format("HH:mm:ss")
+            end_time: moment(response.data.data.end).format("HH:mm:ss"),
+            todos: response.data.data.todos
           }
         })
         .catch(error => {
           console.log(error)
         })
     },
-    removeEvent() {
-      let token = localStorage.getItem('token');
-      axios.delete(`http://sparetime.project:8000/api/events/${this.id}`, {
-          headers: {
-            Authorization: "Bearer " + token
-          }
-        })
-        .then(response => {
-          console.log(response.data);
-          this.$router.replace({
-            name: 'events'
-          });
-        })
-        .catch(error => {
-          console.log(error)
-        })
-    }
+    // removeEvent() {
+    //   let token = localStorage.getItem('token');
+    //   axios.delete(`http://sparetime.project:8000/api/events/${this.id}`, {
+    //       headers: {
+    //         Authorization: "Bearer " + token
+    //       }
+    //     })
+    //     .then(response => {
+    //       console.log(response.data);
+    //       this.$router.replace({
+    //         name: 'events'
+    //       });
+    //     })
+    //     .catch(error => {
+    //       console.log(error)
+    //     })
+    // }
   },
 }
 </script>

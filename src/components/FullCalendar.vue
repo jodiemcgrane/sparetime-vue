@@ -44,7 +44,7 @@ export default {
         initialView: 'timeGridWeek',
         slotMinTime: '07:00:00',
 
-        events: []
+        events: [],
       },
     }
   },
@@ -56,7 +56,7 @@ export default {
       let token = localStorage.getItem('token');
 
       axios.get('http://sparetime.project:8000/api/events', {
-        headers: { Authorization: "Bearer " + token } 
+        headers: { Authorization: "Bearer " + token }
       })
         .then(response => {
           console.log(response.data);
