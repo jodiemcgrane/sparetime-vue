@@ -70,6 +70,7 @@ export default {
           headers: {
             Authorization: "Bearer " + token
           }
+
         });
 
       // const newId = Math.max.apply(null, this.list.map(t =>t.id))+1;
@@ -82,13 +83,22 @@ export default {
       // this.saveTodo();
     },
     completeTodo(todo){
-      const todoIndex = this.list.indexOf(todo);
-      this.list[todoIndex].done = true;
-      this.saveTodo();
+      let token = localStorage.getItem('token');
+
+      axios.put(`http://sparetime.project:8000/api/events/${this.event_id}/todos/${todo}`, {
+
+          title: this.todo,
+          description: this.todo,
+          status: "done"
+
+        }, {headers: {Authorization: "Bearer " + token}});
+      // const todoIndex = this.list.indexOf(todo);
+      // this.list[todoIndex].done = true;
+      // this.saveTodo();
     },
 
     deleteTodo(todo){
-  
+
       let token = localStorage.getItem('token');
       axios.delete(`http://sparetime.project:8000/api/todos/${todo}`, {
           headers: {

@@ -22,7 +22,7 @@ export default {
 
   methods: {
     completeTodo(todo) {
-      this.$emit("complete-todo", todo);
+      this.$emit("complete-todo", todo.id);
     },
     deleteTodo(todo){
       this.$emit("delete-todo", todo.id);
