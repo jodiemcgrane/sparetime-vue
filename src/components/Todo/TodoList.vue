@@ -91,7 +91,18 @@ export default {
           description: this.todo,
           status: "done"
 
-        }, {headers: {Authorization: "Bearer " + token}});
+        }, {
+          headers: {
+            Authorization: "Bearer " + token
+          }
+        }
+      ).then(response => {
+              console.log(response.data);
+
+            })
+            .catch(error => {
+              console.log(error)
+            })
       // const todoIndex = this.list.indexOf(todo);
       // this.list[todoIndex].done = true;
       // this.saveTodo();
