@@ -10,6 +10,7 @@
   flat tile class="px-2"
   v-for="event in events"
   :key="event.id"
+    :to="{name: 'events_show', params: { id: event.id} }"
   >
 
 <v-row row wrap :class="`event ${event.status}`" >
@@ -61,16 +62,18 @@
     </div>
   </v-col>
 
-  <v-col xs="2">
+
+  <!-- <v-col xs="2">
     <div>
     <v-btn  depressed color="primary text-xs-center"
     :to="{name: 'events_show', params: { id: event.id} }">View</v-btn>
     </div>
-  </v-col>
+  </v-col> -->
 
 </v-row>
 <v-divider />
 </v-card>
+
 
 </v-container>
 </template>
@@ -145,5 +148,10 @@ export default {
 
 .v-chip.overdue {
   background: #f83e70 !important;
+}
+
+.v-card:hover{
+  transform: scale(1.003);
+
 }
 </style>
