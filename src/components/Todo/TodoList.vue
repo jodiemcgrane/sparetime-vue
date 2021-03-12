@@ -83,12 +83,13 @@ export default {
       // this.saveTodo();
     },
     completeTodo(todo){
+      console.log(todo);
       let token = localStorage.getItem('token');
 
-      axios.put(`http://sparetime.project:8000/api/events/${this.event_id}/todos/${todo}`, {
+      axios.put(`http://sparetime.project:8000/api/events/${this.event_id}/todos/${todo.id}`, {
 
-          title: this.todo,
-          description: this.todo,
+          title: todo.title,
+          description: todo.title,
           status: "done"
 
         }, {
@@ -102,6 +103,7 @@ export default {
             })
             .catch(error => {
               console.log(error)
+             console.log(error.response.data)
             })
       // const todoIndex = this.list.indexOf(todo);
       // this.list[todoIndex].done = true;

@@ -7,14 +7,24 @@
 <v-row>
   <v-col cols="6">
   <v-card>
+
       <v-card-title>
-    {{formData.title}}
+    <h2>{{formData.title}}</h2>
       </v-card-title>
             <v-card-text>
-          Information:  {{$route.params.id}}
-
-          <br>
-          {{formData.start_time}}
+          Event Id:  {{$route.params.id}}
+          <v-row>
+          <v-col xs="2">
+            <div class="grey--text">
+              Start Time:
+            </div>
+            </v-col>
+            <v-col xs="2">
+            <div>
+              <h4>{{formData.start_time}}</h4>
+            </div>
+          </v-col>
+        </v-row>
           <br>
           {{formData.end_time}}
           <br>
@@ -24,6 +34,7 @@
             <v-btn depressed
             @click="removeEvent()"
             class="error text-uppercase white--text" >REMOVE</v-btn>
+
   </v-card>
 </v-col>
 
