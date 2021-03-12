@@ -123,8 +123,8 @@ export default {
   background-color: #ffffff !important;
   border-left: 5px solid #2196f3 !important
 } */
-.event.complete {
-  border-left: 4px solid #3cd1c2;
+.event.done {
+  border-left: 4px solid #4caf50;
 }
 
 .event.ongoing {
@@ -135,8 +135,8 @@ export default {
   border-left: 4px solid tomato;
 }
 
-.v-chip.complete {
-  background: #3cd1c2 !important;
+.v-chip.done {
+  background: #4caf50 !important;
 }
 
 .v-chip.ongoing {

@@ -1,6 +1,6 @@
 <template lang="html">
   <v-list-item>
-  <span v-if="todo.done" class="done">{{ todo.id }}</span>
+  <span v-if="todo.status === 'done'" class="done">{{ todo.title }}</span>
   <span v-else> {{ todo.title }}</span>
 
   <v-spacer></v-spacer>

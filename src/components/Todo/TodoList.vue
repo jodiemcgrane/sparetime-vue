@@ -71,7 +71,14 @@ export default {
             Authorization: "Bearer " + token
           }
 
-        });
+        }).then(response => {
+                console.log(response.data);
+                this.$router.go()
+              })
+              .catch(error => {
+                console.log(error)
+               console.log(error.response.data)
+              });
 
       // const newId = Math.max.apply(null, this.list.map(t =>t.id))+1;
       // this.list.push({
@@ -99,7 +106,7 @@ export default {
         }
       ).then(response => {
               console.log(response.data);
-
+                this.$router.go()
             })
             .catch(error => {
               console.log(error)
@@ -120,7 +127,7 @@ export default {
         })
         .then(response => {
           console.log(response.data);
-
+            this.$router.go()
         })
         .catch(error => {
           console.log(error)

@@ -9,31 +9,48 @@
   <v-card>
 
       <v-card-title>
-    <h2>{{formData.title}}</h2>
+    <h2 class="font-weight-bold">{{formData.title}}</h2>
       </v-card-title>
             <v-card-text>
           Event Id:  {{$route.params.id}}
           <v-row>
           <v-col xs="2">
-            <div class="grey--text">
-              Start Time:
-            </div>
+              <h5 class="black--text font-weight-bold">Start Time:</h5>
+            </v-col>
+      
+            <v-col xs="2">
+              <p class="body-1">{{formData.start_time}}</p>
+            </v-col>
+            </v-row>
+            <v-row>
+          <v-col xs="2">
+              <h5 class="black--text font-weight-bold">End Time:</h5>
             </v-col>
             <v-col xs="2">
-            <div>
-              <h4>{{formData.start_time}}</h4>
-            </div>
+              <p class="body-1">{{formData.end_time}}</p>
           </v-col>
+
         </v-row>
-          <br>
-          {{formData.end_time}}
-          <br>
-          {{formData.date}}
+          <v-row>
+            <v-col xs="2">
+                <h5 class="black--text font-weight-bold">Date:</h5>
+              </v-col>
+              <v-col xs="2">
+                <p class="body-1">{{formData.date}}</p>
+            </v-col>
+
+          </v-row>
             </v-card-text>
+            <v-row>
+                <v-col xs="2">
             <UpdatePopup :eventData="formData"/>
+          </v-col>
+          <v-col xs="2">
             <v-btn depressed
             @click="removeEvent()"
             class="error text-uppercase white--text" >REMOVE</v-btn>
+          </v-col>
+          </v-row>
 
   </v-card>
 </v-col>
