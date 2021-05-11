@@ -5,13 +5,7 @@
 <template lang="html">
 <v-container class="my-5">
 
-
-<v-card
-  flat tile class="px-2"
-  v-for="event in events"
-  :key="event.id"
-    :to="{name: 'events_show', params: { id: event.id} }"
-  >
+<v-card flat tile class="px-2" v-for="event in events" :key="event.id" :to="{name: 'events_show', params: { id: event.id} }">
 
 <v-row row wrap :class="`event ${event.status}`" >
 
@@ -23,17 +17,14 @@
       {{event.title}}
     </div>
   </v-col>
-
   <v-col xs="2">
     <div class="caption grey--text">
       Start Time
     </div>
     <div>
-
       {{event.start | moment("HH:mm")}}
     </div>
   </v-col>
-
   <v-col xs="2">
     <div class="caption grey--text">
       End Time
@@ -42,7 +33,6 @@
       {{event.end | moment("HH:mm")}}
     </div>
   </v-col>
-
   <v-col xs="2">
     <div class="caption grey--text">
       Date
@@ -51,7 +41,6 @@
       {{event.start | moment("DD/MM/YYYY")}}
     </div>
   </v-col>
-
   <v-col xs="2">
     <div class="caption grey--text">
       Status

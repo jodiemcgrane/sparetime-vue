@@ -61,16 +61,12 @@ export default {
       }
       let token = localStorage.getItem('token');
       axios.post(`http://sparetime.project:8000/api/events/${this.event_id}/todos`, {
-
-
           title: this.todo,
           description: this.todo
-
         }, {
           headers: {
             Authorization: "Bearer " + token
           }
-
         }).then(response => {
                 console.log(response.data);
                 this.$router.go()
@@ -94,11 +90,9 @@ export default {
       let token = localStorage.getItem('token');
 
       axios.put(`http://sparetime.project:8000/api/events/${this.event_id}/todos/${todo.id}`, {
-
           title: todo.title,
           description: todo.title,
           status: "done"
-
         }, {
           headers: {
             Authorization: "Bearer " + token
@@ -118,7 +112,6 @@ export default {
     },
 
     deleteTodo(todo){
-
       let token = localStorage.getItem('token');
       axios.delete(`http://sparetime.project:8000/api/todos/${todo}`, {
           headers: {

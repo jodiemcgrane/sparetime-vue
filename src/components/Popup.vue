@@ -40,7 +40,6 @@
                             </v-date-picker>
 
             </v-menu>
-
             <v-menu
             v-model="menu_start_time"
             :close-on-content-click="false"
@@ -51,9 +50,7 @@
             max-width="290px"
             min-width="290px"
             >
-
             <template v-slot:activator="{ on, attrs}">
-
               <v-text-field v-model="form.start_time"
               label="Pick a time"
               prepend-icon="mdi-alarm"
@@ -63,7 +60,6 @@
               >
             </v-text-field>
           </template>
-
           <v-time-picker
           v-if="menu_start_time"
           v-model="form.start_time"
@@ -71,7 +67,6 @@
           full-width
           >
           </v-time-picker>
-
           </v-menu>
 
           <v-menu
@@ -84,9 +79,7 @@
           max-width="290px"
           min-width="290px"
           >
-
           <template v-slot:activator="{ on, attrs}">
-
             <v-text-field v-model="form.end_time"
             label="Pick a time"
             prepend-icon="mdi-alarm"
@@ -96,7 +89,6 @@
             >
           </v-text-field>
         </template>
-
         <v-time-picker
         v-if="menu_end_time"
         v-model="form.end_time"
@@ -104,7 +96,6 @@
         full-width
         >
         </v-time-picker>
-
         </v-menu>
 
             <v-btn @click="createEvent()" depressed class="success mx-0 mt-3">Add Event</v-btn>

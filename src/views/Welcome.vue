@@ -15,7 +15,7 @@
   <v-card-text>
     <v-form>
        <v-text-field v-model="form.email" label="Email" required></v-text-field>
-        <v-text-field v-model="form.password" label="Password" required></v-text-field>
+        <v-text-field v-model="form.password" label="Password" type="password" required></v-text-field>
         <v-btn @click="login()" elevation="2" large color="primary">LOGIN</v-btn>
         </v-form>
       </v-card-text>

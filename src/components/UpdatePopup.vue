@@ -172,17 +172,11 @@ export default {
     updateEvent() {
       let token = localStorage.getItem('token');
       axios.put(`http://sparetime.project:8000/api/events/${this.eventData.id}`, {
-
-
           title: this.eventData.title,
           start_date: this.eventData.date,
           start_time: this.eventData.start_time,
           end_time: this.eventData.end_time,
           status: this.eventData.status
-
-
-
-
         }, {
           headers: {
             Authorization: "Bearer " + token
