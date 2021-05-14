@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-02-24T12:51:59+00:00
-@Last modified time: 2021-03-04T13:57:11+00:00
+@Last modified time: 2021-05-11T13:24:14+01:00
 -->
 <template lang="html">
 
@@ -98,7 +98,7 @@
         </v-time-picker>
         </v-menu>
 
-            <v-btn @click="createEvent()" depressed class="success mx-0 mt-3">Add Event</v-btn>
+            <v-btn @click="createEvent(); dialog=false;" depressed class="success mx-0 mt-3">Add Event</v-btn>
 
           </v-form>
         </v-card-text>
@@ -132,12 +132,10 @@ export default {
       let token = localStorage.getItem('token');
       axios.post('http://sparetime.project:8000/api/events', {
 
-
           title: this.form.title,
           start_date: this.form.date,
           start_time: this.form.start_time,
           end_time: this.form.end_time
-
         }, {
           headers: {
             Authorization: "Bearer " + token
@@ -154,7 +152,6 @@ export default {
           console.log(error.response.data)
         })
     }
-
 
   },
 }

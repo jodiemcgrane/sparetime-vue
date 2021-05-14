@@ -1,3 +1,10 @@
+<!--
+@Date:   2021-05-11T10:33:15+01:00
+@Last modified time: 2021-05-11T13:54:43+01:00
+-->
+
+
+
 <template lang="html">
   <div>
     <v-text-field
@@ -75,15 +82,6 @@ export default {
                 console.log(error)
                console.log(error.response.data)
               });
-
-      // const newId = Math.max.apply(null, this.list.map(t =>t.id))+1;
-      // this.list.push({
-      //   id: newId,
-      //   text: this.todo,
-      //   done: false
-      // });
-      // this.todo = "";
-      // this.saveTodo();
     },
     completeTodo(todo){
       console.log(todo);
@@ -106,9 +104,6 @@ export default {
               console.log(error)
              console.log(error.response.data)
             })
-      // const todoIndex = this.list.indexOf(todo);
-      // this.list[todoIndex].done = true;
-      // this.saveTodo();
     },
 
     deleteTodo(todo){
@@ -125,17 +120,6 @@ export default {
         .catch(error => {
           console.log(error)
         })
-
-
-
-
-
-      // const todoIndex = this.list.indexOf(todo);
-      // if(this.list[todoIndex] === todo){
-      // this.list.splice(todoIndex, 1);
-      // alert("You are about to deleted a ToDo");
-      // this.saveTodo()
-
   },
     saveTodo() {
       let parsed = JSON.stringify(this.list);

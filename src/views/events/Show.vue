@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-03-05T21:28:59+00:00
-@Last modified time: 2021-03-06T22:01:12+00:00
+@Last modified time: 2021-05-11T14:04:25+01:00
 -->
 <template lang="html">
 <v-container class="my-5">
@@ -12,12 +12,12 @@
     <h2 class="font-weight-bold">{{formData.title}}</h2>
       </v-card-title>
             <v-card-text>
-          Event Id:  {{$route.params.id}}
+
           <v-row>
           <v-col xs="2">
               <h5 class="black--text font-weight-bold">Start Time:</h5>
             </v-col>
-      
+
             <v-col xs="2">
               <p class="body-1">{{formData.start_time}}</p>
             </v-col>
@@ -119,7 +119,7 @@ export default {
         })
         .then(response => {
           console.log(response.data);
-          //this.event = response.data.data;
+
           this.formData = {
             id: response.data.data.id,
             title: response.data.data.title,
@@ -149,7 +149,6 @@ export default {
         .catch(error => {
           console.log(error)
         })
-
   },
 }
 }

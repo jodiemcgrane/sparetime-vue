@@ -1,6 +1,6 @@
 <!--
 @Date:   2021-02-24T12:51:59+00:00
-@Last modified time: 2021-02-27T16:16:45+00:00
+@Last modified time: 2021-05-11T11:36:40+01:00
 -->
 <template lang="html">
 
@@ -8,7 +8,7 @@
     <v-dialog v-model="dialog" width="500">
       <template v-slot:activator="{ on }">
         <v-btn depressed
-         class="amber darken-1 text-uppercase white--text" v-on="on"><v-icon>mdi-calendar-plus</v-icon>Event</v-btn>
+         class="amber darken-1 text-uppercase white--text" v-on="on"><v-icon>mdi-calendar-plus</v-icon>Update</v-btn>
       </template>
       <v-card>
         <v-card-title class="headline grey lighten-2" primary-title>Edit Event</v-card-title>
@@ -126,7 +126,7 @@
 
                     </v-row>
                         <v-row class="d-flex justify-center">
-                            <v-btn @click="updateEvent()" depressed class="d-flex justify-center success mx-0 mt-3">Submit</v-btn>
+                            <v-btn @click="updateEvent(); dialog=false" depressed class="d-flex justify-center success mx-0 mt-3">Submit</v-btn>
                         </v-row>
                       </v-form>
                     </v-card-text>
