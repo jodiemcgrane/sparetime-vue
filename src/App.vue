@@ -4,9 +4,9 @@
 -->
 <template>
 <v-app >
-  <NavBar />
+  <NavBar :loggedIn="this.loggedIn" v-on:login="setLoggedIn" v-on:logout="setLoggedOut" />
   <v-main class="background">
-    <router-view />
+    <router-view :loggedIn="this.loggedIn" v-on:login="setLoggedIn" v-on:logout="setLoggedOut" />
   </v-main>
 </v-app>
 </template>
@@ -18,7 +18,32 @@ export default {
   name: 'App',
   components: {
     NavBar,
+  },
+  data() {
+    return {
+      loggedIn: false
+    }
+  },
+  created() {
+    if (localStorage.getItem('token')) {
+      this.loggedIn = true;
+      console.log("APP: ",this.loggedIn);
+    }
+    else {
+      this.loggedIn = false;
+    }
+  },
+  methods: {
+    setLoggedIn() {
+      this.loggedIn = true;
+            // optionally, you could store the token in localStorage here
+    },
+    setLoggedOut() {
+      this.loggedIn = false;
+            // optionally, you could trigger the whole logout process here
+    }
   }
+
 }
 </script>
 
@@ -26,4 +51,8 @@ export default {
 .background{
   background-color: #F5F5F5;
 }
+a.router-link-active, a.router-link:hover {
+
+text-decoration: none;
+} 
 </style>

@@ -76,7 +76,7 @@ export default {
           }
         }).then(response => {
                 console.log(response.data);
-                this.$router.go()
+               this.getTodos();
               })
               .catch(error => {
                 console.log(error)
@@ -98,7 +98,7 @@ export default {
         }
       ).then(response => {
               console.log(response.data);
-                this.$router.go()
+              this.getTodos();
             })
             .catch(error => {
               console.log(error)
@@ -115,7 +115,7 @@ export default {
         })
         .then(response => {
           console.log(response.data);
-            this.$router.go()
+            this.getTodos();
         })
         .catch(error => {
           console.log(error)

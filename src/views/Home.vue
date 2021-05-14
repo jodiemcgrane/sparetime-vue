@@ -3,7 +3,7 @@
 @Last modified time: 2021-02-23T09:16:21+00:00
 -->
 <template>
-<div class="home">
+<div >
   <v-container>
         <FullCalendar />
   </v-container>
@@ -17,6 +17,7 @@ export default {
   name: 'home',
   components: {
     FullCalendar,
+  
   }
 }
 </script>

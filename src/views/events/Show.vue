@@ -4,9 +4,10 @@
 -->
 <template lang="html">
 <v-container class="my-5">
-<v-row>
+<v-row class="mt-10">
   <v-col cols="6">
-  <v-card>
+    <h1 class="display-3 font-weight-bold">Event</h1>
+  <v-card class="mt-5">
 
       <v-card-title>
     <h2 class="font-weight-bold">{{formData.title}}</h2>
@@ -56,7 +57,8 @@
 </v-col>
 
 <v-col cols="4">
-  <v-card>
+  <h1 class="display-3 font-weight-bold">Todo</h1>
+  <v-card class="mt-5">
       <v-card-text>
 <TodoList  />
 </v-card-text>

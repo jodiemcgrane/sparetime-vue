@@ -4,17 +4,19 @@
 -->
 <template lang="html">
 
-  <div class="text-center">
+  <div>
     <v-dialog v-model="dialog" width="500">
       <template v-slot:activator="{ on }">
+        
         <v-btn depressed
-         class="blue text-uppercase white--text" v-on="on"><v-icon>mdi-calendar-plus</v-icon>Event</v-btn>
+         class="success text-uppercase white--text" v-on="on"><v-icon>mdi-calendar-plus</v-icon>Event</v-btn>
+       
       </template>
       <v-card>
         <v-card-title class="headline grey lighten-2" primary-title>Add a new event</v-card-title>
         <v-card-text>
           <v-form class="px-3">
-            <v-text-field v-model="form.title" required label="Title" prepend-icon="mdi-folder"></v-text-field>
+            <v-text-field v-model="form.title" :rules="titleRules" required label="Title" prepend-icon="mdi-folder"></v-text-field>
                 <v-menu
                 v-model="menu_date"
                 :close-on-content-click="false"
@@ -30,12 +32,14 @@
                     readonly
                     v-bind="attrs"
                     v-on="on"
+                  
                                 >
                     </v-text-field>
                   </template>
                               <v-date-picker
                               v-model="form.date"
                               @input="menu_date = false"
+                            
                               >
                             </v-date-picker>
 
@@ -57,6 +61,7 @@
               readonly
               v-bind="attrs"
               v-on="on"
+              
               >
             </v-text-field>
           </template>
@@ -65,6 +70,7 @@
           v-model="form.start_time"
           format="24hr"
           full-width
+
           >
           </v-time-picker>
           </v-menu>
@@ -123,12 +129,18 @@ export default {
       },
       menu_date: false,
       menu_start_time: false,
-      menu_end_time: false
+      menu_end_time: false,
+
+      titleRules: [
+      v => !!v || "Title is empty"
+      ]
+    
 
     }
   },
   methods: {
     createEvent() {
+      if(this.$refs.form.validate()){
       let token = localStorage.getItem('token');
       axios.post('http://sparetime.project:8000/api/events', {
 
@@ -143,14 +155,16 @@ export default {
         })
         .then(response => {
           console.log(response.data);
-          this.$router.replace({
-            name: 'home'
-          });
+          this.$emit("get-events");
         })
         .catch(error => {
           console.log(error)
           console.log(error.response.data)
         })
+    }
+  },
+    getEvents(){
+      this.$emit("get-events");
     }
 
   },

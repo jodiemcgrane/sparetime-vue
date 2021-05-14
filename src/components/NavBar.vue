@@ -6,19 +6,25 @@
 <nav>
 
   <v-app-bar app color="blue">
-    <v-app-bar-nav-icon class="white--text" @click="sideBar = !sideBar"></v-app-bar-nav-icon>
+    <v-app-bar-nav-icon class="white--text" @click="sideBar = !sideBar" v-if="loggedIn"></v-app-bar-nav-icon>
     <v-toolbar-title class="white--text">SpareTime</v-toolbar-title>
     <v-spacer />
-    <v-toolbar-items class="align-center">
-      <Popup />
-      <v-btn depressed class="blue text-uppercase white--text" to="/">Login <v-icon>mdi-login-variant</v-icon></v-btn>
-      <v-btn @click="logout()" depressed class="blue text-uppercase white--text" to="/">Logout <v-icon>mdi-logout</v-icon></v-btn>
-      <v-btn depressed class="blue text-uppercase white--text" to="/register">Register <v-icon>mdi-account-plus</v-icon></v-btn>
+    <v-toolbar-items class="align-center" v-if="loggedIn">
+
+        <v-btn @click="logout()" depressed class="blue text-uppercase white--text" to="/">Logout<v-icon>mdi-logout</v-icon></v-btn>
 
     </v-toolbar-items>
+     <v-toolbar-items class="align-center" v-else>
+      <v-btn depressed class="blue text-uppercase white--text" to="/login">Login<v-icon>mdi-login-variant</v-icon></v-btn>
+      <v-btn depressed class="blue text-uppercase white--text" to="/register">Register<v-icon>mdi-account-plus</v-icon></v-btn>
+    </v-toolbar-items>
+
+     
+
+    
   </v-app-bar>
 
-  <v-navigation-drawer app v-model="sideBar">
+  <v-navigation-drawer app v-model="sideBar" v-if="loggedIn">
     <v-list>
       <v-list-item v-for="link in links" :key="link.text" router :to="link.route">
         <v-list-item-icon>
@@ -36,10 +42,13 @@
 
 <script>
 import axios from 'axios';
-import Popup from './Popup.vue'
+//import Popup from './Popup.vue'
 
 export default {
   name: 'NavBar',
+  props: {
+  loggedIn: Boolean //<-- this is new line
+},
   data() {
     return {
       sideBar: false,
@@ -62,7 +71,7 @@ export default {
     }
   },
   components: {
-    Popup
+    //Popup
   },
   methods: {
     logout() {
@@ -78,6 +87,7 @@ export default {
           this.$router.replace({
             name: 'welcome'
           });
+          this.$emit('logout');
         })
         .catch(error => {
           console.log(error)

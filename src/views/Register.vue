@@ -4,19 +4,20 @@
 -->
 <template>
 <v-container>
-  <v-row align="center" justify="center">
+  <v-row align="center mt-16" justify="center">
     <v-col md="4">
 
       <v-card>
         <v-card-title class="headline grey lighten-2" primary-title>
-          <v-icon>mdi-account-plus</v-icon>
+          <v-icon class="pr-1">mdi-account-plus</v-icon>
+          Register
           
         </v-card-title>
         <v-card-text>
           <v-form>
-            <v-text-field v-model="form.name" label="Name" required></v-text-field>
-            <v-text-field v-model="form.email" label="Email" required></v-text-field>
-            <v-text-field v-model="form.password" label="Password" required></v-text-field>
+            <v-text-field v-model="form.name" label="Name" :rules="nameRules" required></v-text-field>
+            <v-text-field v-model="form.email" label="Email" :rules="emailRules" required></v-text-field>
+            <v-text-field v-model="form.password" label="Password" :rules="passwordRules" required></v-text-field>
             <v-btn @click="register()" elevation="2" large color="primary">REGISTER</v-btn>
           </v-form>
         </v-card-text>
@@ -42,7 +43,17 @@ export default {
         name: "",
         email: "",
         password: ""
-      }
+      },
+      nameRules:[
+      v=> !!v || "Name is empty"
+      ],
+      emailRules:[
+      v=> !!v || "Email is empty",
+      v => /.+@.+\..+/.test(v) || 'E-mail must be valid'
+      ],
+      passwordRules:[
+      v=> !!v || "Password is empty"
+      ] 
     }
   },
   methods: {

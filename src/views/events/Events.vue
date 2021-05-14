@@ -143,4 +143,5 @@ export default {
   transform: scale(1.003);
 
 }
+
 </style>

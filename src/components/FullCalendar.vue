@@ -3,8 +3,12 @@
 @Last modified time: 2021-02-25T18:46:20+00:00
 -->
 <template>
-<div>
-  <Fullcalendar :options="calendarPlugins" :events="getEvents()" />
+  <div>
+
+  <Popup v-on:get-events="getEvents" class="mt-5 ml-auto right"/>
+  <Fullcalendar :options="calendarPlugins" :events="getEvents()" class="mt-5" />
+
+
 </div>
 </template>
 
@@ -16,9 +20,11 @@ import interactionPlugin from '@fullcalendar/interaction'
 import listPlugin from '@fullcalendar/list'
 
 import axios from 'axios';
+import Popup from '@/components/Popup.vue';
 export default {
   components: {
-    Fullcalendar
+    Fullcalendar,
+    Popup
   },
   data() {
     return {
@@ -96,5 +102,8 @@ export default {
 .fc-button-primary {
   background-color: #2196F3;
   color: #fff;
+}
+.right{
+  text-align: right;
 }
 </style>

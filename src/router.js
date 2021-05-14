@@ -8,6 +8,7 @@ import Router from 'vue-router'
 
 import Welcome from './views/Welcome'
 import Register from './views/Register'
+import Login from './views/Login'
 
 import Home from './views/Home'
 import Events from './views/events/Events'
@@ -31,6 +32,11 @@ export default new Router({
       path: '/register',
       name: 'register',
       component: Register
+    },
+     {
+      path: '/login',
+      name: 'login',
+      component: Login
     },
     {
       path: '/home',
